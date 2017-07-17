@@ -1,0 +1,24 @@
+[Unit]
+Description=Teamcity Server
+After=docker.service
+After=mysql.service
+Requires=docker.service
+Requires=mysql.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+#ExecStartPre=-/usr/bin/docker stop %n
+#ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull omez/teamcity-server:latest
+ExecStart=/usr/bin/docker run -it --rm --name %n \
+    -v /var/teamcity/server/data:/data/teamcity_server/datadir \
+    -v /var/teamcity/server/logs:/opt/teamcity/logs  \
+    -p 8111:8111 \
+    -e TEAMCITY_SERVER_MEM_OPTS="-Xmx2g -XX:MaxPermSize=270m -XX:ReservedCodeCacheSize=350m" \
+    -e TC_WAIT_FOR_HOST=database-host \
+    -e TC_WAIT_FOR_PORT=3306 \
+    omez/teamcity-server:latest
+
+[Install]
+WantedBy=multi-user.target

@@ -8,6 +8,7 @@ RUN apt-get update && \
 	apt-get install -y git netcat \
 	&& rm -rf /var/lib/apt/lists/*
 
+ADD https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.42.tar.gz /
 
 # Put wrapper to wait for external database in composition response 
 COPY run-services-wrapper.sh /run-services-wrapper.sh
