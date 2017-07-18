@@ -43,4 +43,8 @@ docker run -it --name teamcity-server-instance  \
     omez/teamcity-server
 ```
 
-Exactly the same command used in teamcity-service example
+exactly the same command used in teamcity-service example.
+
+
+
+# Agent configuration
