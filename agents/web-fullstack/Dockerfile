@@ -27,7 +27,9 @@ RUN apt-get install -y php${PHP_VERSION}-cli \
         php${PHP_VERSION}-opcache \
         php${PHP_VERSION}-calendar \
         php${PHP_VERSION}-intl \
-        php${PHP_VERSION}-mcrypt
+        php${PHP_VERSION}-mcrypt \
+        php${PHP_VERSION}-xml \
+        php${PHP_VERSION}-mbstring
 
 
 # Install additional utilities
