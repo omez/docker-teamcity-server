@@ -2,7 +2,9 @@ FROM jetbrains/teamcity-agent
 MAINTAINER Alexander Sergeychik <alexander.sergeychik@gmail.com>
 
 
-ENV     PHP_VERSION     7.1
+ENV     PHP_VERSION                 7.1
+ENV     COMPOSER_ALLOW_SUPERUSER    1
+
 
 RUN apt-get update && apt-get install -y wget unzip git curl software-properties-common
 
