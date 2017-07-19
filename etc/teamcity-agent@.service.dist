@@ -1,0 +1,25 @@
+[Unit]
+Description=Teamcity Agent %i Service
+After=docker.service
+After=mysql.service
+Requires=docker.service
+Requires=mysql.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=/usr/bin/docker pull omez/teamcity-agent-fullstack:latest
+#ExecStartPre=-/usr/bin/docker stop %n
+#ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run --name %p.%i --rm \
+    -e SERVER_URL="teamcity-server:8111" \
+    -e AGENT_NAME=%n \
+    -v /var/teamcity/%n:/data/teamcity_agent/conf  \
+    -v /var/run/docker.sock:/var/run/docker.sock  \
+    --link teamcity-server.service:teamcity-server
+    omez/teamcity-agent-fullstack:latest
+ExecStop=-/usr/bin/docker stop %n
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,4 @@
+[Unit]
+Description=Teamcity Server + agents
+Requires=teamcity-agent.target
+Requires=teamcity-server.service

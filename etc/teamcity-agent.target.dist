@@ -1,0 +1,5 @@
+[Unit]
+Description=Teamcity agents target
+Requires=teamcity-agent@one.service
+Requires=teamcity-agent@two.service
+Requires=teamcity-agent@three.service

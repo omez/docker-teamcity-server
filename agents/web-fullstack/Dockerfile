@@ -2,12 +2,9 @@ FROM jetbrains/teamcity-agent
 MAINTAINER Alexander Sergeychik <alexander.sergeychik@gmail.com>
 
 
-ENV     PHP_VERSION     7.0
+ENV     PHP_VERSION     7.1
 
-
-RUN apt-get update && \
-	apt-get install -y wget unzip git software-properties-common \
-	&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y wget unzip git curl software-properties-common
 
 # Ansible installation
 RUN apt-add-repository ppa:ansible/ansible && apt-get update && apt-get install -y ansible
@@ -20,6 +17,8 @@ RUN apt-get install -y nodejs
 RUN npm install -g gulp grunt-cli yarn gulp typings
 
 # Install PHP cli
+RUN LC_ALL=C.UTF-8 apt-add-repository ppa:ondrej/php && apt-get update
+
 RUN apt-get install -y php${PHP_VERSION}-cli \
         php${PHP_VERSION}-gd \
         php${PHP_VERSION}-curl \
