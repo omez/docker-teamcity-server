@@ -1,6 +1,5 @@
-FROM jetbrains/teamcity-agent
+FROM jetbrains/teamcity-agent as base
 MAINTAINER Alexander Sergeychik <alexander.sergeychik@gmail.com>
-
 
 ENV     PHP_VERSION                 7.1
 ENV     COMPOSER_ALLOW_SUPERUSER    1
@@ -38,5 +37,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php${PHP_VERSION}-cli \
 
 # Install additional utilities
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick optipng
+
+
+# Install Jelastic tools
+RUN curl -s ftp://ftp.jelastic.com/pub/cli/jelastic-cli-installer.sh | bash
+
 
 RUN rm -rf /var/lib/apt/lists/*
