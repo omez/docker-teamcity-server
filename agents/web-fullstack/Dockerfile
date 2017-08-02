@@ -41,6 +41,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick optipng
 
 # Install Jelastic tools
 RUN curl -s ftp://ftp.jelastic.com/pub/cli/jelastic-cli-installer.sh | bash
+VOLUME /root/.config/jelastic
 
+# Install kubectl
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+RUN chmod +x kubectl && mv ./kubectl /usr/local/bin/kubectl
+VOLUME /root/.kube
 
+## Clean caches
 RUN rm -rf /var/lib/apt/lists/*
