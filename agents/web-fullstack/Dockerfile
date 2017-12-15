@@ -11,7 +11,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget unz
 RUN apt-add-repository ppa:ansible/ansible && apt-get update && apt-get install -y ansible
 
 # NodeJS installation
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
 
 # Install useful NodeJS packages
@@ -45,7 +45,7 @@ VOLUME /root/.config/jelastic
 
 # Install kubectl
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-RUN chmod +x kubectl && mv ./kubectl /usr/local/bin/kubectl
+RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 VOLUME /root/.kube
 
 ## Clean caches
