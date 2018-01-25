@@ -5,9 +5,8 @@ ENV     PHP_VERSION                 7.1
 ENV     COMPOSER_ALLOW_SUPERUSER    1
 
 ## SSH configuration
-RUN   mkdir /home/buildagent/.ssh
-COPY  files/ssh_config /home/buildagent/.ssh/config
-RUN   chown -R buildagent:buildagent /home/buildagent/.ssh
+RUN   mkdir /root/.ssh
+COPY  files/ssh_config /root/.ssh/config
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget unzip git curl software-properties-common
 
