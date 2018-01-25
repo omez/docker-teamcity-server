@@ -4,6 +4,9 @@ MAINTAINER Alexander Sergeychik <alexander.sergeychik@gmail.com>
 ENV     PHP_VERSION                 7.1
 ENV     COMPOSER_ALLOW_SUPERUSER    1
 
+## SSH configuration
+RUN   mkdir /buildagent/.ssh
+COPY  files/ssh_config /buildagent/.ssh/config
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget unzip git curl software-properties-common
 
