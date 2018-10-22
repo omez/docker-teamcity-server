@@ -51,11 +51,16 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
 RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 VOLUME /root/.kube
 
-# Install snapd
-RUN apt-get install -y snapd
+# Install helm
+ENV HELM_RELEASE helm-v2.11.0-linux-amd64
+RUN mkdir /tmp/helm && cd /tmp/helm \
+    && wget https://storage.googleapis.com/kubernetes-helm/${HELM_RELEASE}.tar.gz \
+    && tar -zxvf ${HELM_RELEASE}.tar.gz \
+    && mv linux-amd64/helm /usr/local/bin/helm \
+    && rm -r /tmp/helm
 
 # Install helm
-RUN snap install helm --classic
+RUN helm --help
 
 ## Clean caches
 RUN rm -rf /var/lib/apt/lists/*
