@@ -54,5 +54,8 @@ VOLUME /root/.kube
 # Install snapd
 RUN apt-get install -y snapd
 
+# Install helm
+RUN snap install helm --classic
+
 ## Clean caches
 RUN rm -rf /var/lib/apt/lists/*
