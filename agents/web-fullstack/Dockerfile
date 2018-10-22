@@ -59,8 +59,5 @@ RUN mkdir /tmp/helm && cd /tmp/helm \
     && mv linux-amd64/helm /usr/local/bin/helm \
     && rm -r /tmp/helm
 
-# Install helm
-RUN helm --help
-
 ## Clean caches
 RUN rm -rf /var/lib/apt/lists/*
