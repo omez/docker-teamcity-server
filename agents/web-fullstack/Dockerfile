@@ -51,5 +51,8 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
 RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 VOLUME /root/.kube
 
+# Install snapd
+RUN apt-get install -y snapd
+
 ## Clean caches
 RUN rm -rf /var/lib/apt/lists/*
