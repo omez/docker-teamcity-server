@@ -52,7 +52,7 @@ RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 VOLUME /root/.kube
 
 # Install helm
-ENV HELM_RELEASE helm-v2.11.0-linux-amd64
+ENV HELM_RELEASE helm-v2.10.0-linux-amd64
 RUN mkdir /tmp/helm && cd /tmp/helm \
     && wget https://storage.googleapis.com/kubernetes-helm/${HELM_RELEASE}.tar.gz \
     && tar -zxvf ${HELM_RELEASE}.tar.gz \
